@@ -19,9 +19,7 @@ def get(verbose, header, output, url):
     """
     executes a HTTP GET request and prints the response.
     """
-
     get_req = Request("GET", header, None, url)
-    print(get_req.to_string())
 
     if verbose:
         final_resp = get_req.send_req()

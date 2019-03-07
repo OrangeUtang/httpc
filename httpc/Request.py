@@ -9,7 +9,7 @@ class Request:
     method = ""
     host = ""
     port = 80
-    path = ""
+    path = "/"
     headers = None
     queries = None
     data = None
@@ -28,12 +28,9 @@ class Request:
         self.host_ip = None
         self.set_socket()
 
-        print(headers)
-
     def to_string(self):
 
         temp_str = self.method + " " + self.path
-        print(self.path)
         if self.queries:
             temp_str = temp_str + "?" + self.queries
 
@@ -67,10 +64,10 @@ class Request:
                 url = "//" + url
 
         pu = urlparse(url)
-        self.host = pu.netloc
+        self.host = pu.netloc.split(":")[0]
 
         if pu.port is not None:
-            self.port = pu.port
+           self.port = pu.port
 
         self.path = pu.path
         self.queries = pu.query
